@@ -1,0 +1,7 @@
+# -*- mode: sh; -*-
+
+# Auto-cd into my projects
+cdpath=($BOXEN_SRC_DIR ~)
+
+# Stop `hub` clobbering `git`
+unalias git

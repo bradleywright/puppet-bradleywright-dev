@@ -61,9 +61,7 @@ class bradleywright-dev(
 
   # This is so Emacs behaves itself when calling out to node
   file { "${my_home}/.emacs.d/local/${::hostname}.el":
-    mode    => '0644',
-    content => "(exec-path-from-shell-copy-envs '(\"BOXEN_NVM_DIR\" \"BOXEN_NVM_DEFAULT_VERSION\"))
-",
+    source  => 'puppet:///modules/bradleywright-dev/emacs-host-local.el',
     require => Repository[$emacs],
   }
 
@@ -82,20 +80,12 @@ class bradleywright-dev(
   }
 
   file { "${my_home}/.local_zshrc":
-    mode    => '0644',
-    content => "cdpath=(${::boxen_srcdir} ~)
-
-# Do not want hub clobbering git
-unalias git",
+    source  => 'puppet:///modules/bradleywright-dev/local_zshrc'
   }
 
   # Make sure I load Boxen
   file { "${my_home}/.local_zshenv":
-    mode    => '0644',
-    content => "[[ -f ${boxen::config::boxen_home}/env.sh ]] && . ${boxen::config::boxen_home}/env.sh
-
-[[ -d ${boxen::config::boxen_home}/homebrew/share/python ]] && path=(\$path ${boxen::config::boxen_home}/homebrew/share/python)
-"
+    source  => 'puppet:///modules/bradleywright-dev/local_zshenv'
   }
 
   # Use my dotfiles gitconfig
