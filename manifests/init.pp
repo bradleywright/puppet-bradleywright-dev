@@ -7,7 +7,7 @@ class bradleywright-dev(
   include alfred
   include chrome
   include dropbox
-  include emacs::formacosx
+  include emacs
   include emacs-keybindings
   include iterm2::dev
   include omnifocus
